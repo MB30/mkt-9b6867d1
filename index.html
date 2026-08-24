@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0C0F16">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cosa annuncera Fabio Bin?">
+<meta property="og:description" content="Mercato previsionale. Quattro esiti, quote in tempo reale, 1.000 euro finti a testa. Aperto fino alla chiamata.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Crect width=%2724%27 height=%2724%27 rx=%276%27 fill=%27%23E8A33D%27/%3E%3Cpath d=%27M5 16.5 9.2 11l3.1 3 5.7-7.2%27 stroke=%27%231A1200%27 stroke-width=%272.1%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<title>Cosa annuncerà Fabio Bin?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --bg:#0C0F16;
+  --surface:#141926;
+  --surface-2:#1B2130;
+  --surface-3:#232A3B;
+  --line:#2A3143;
+  --line-soft:#202634;
+  --text:#E9ECF4;
+  --text-2:#A3ACC0;
+  --muted:#727C93;
+  --accent:#E8A33D;
+  --yes:#4FB286;
+  --no:#E0665C;
+  --c1:#E8A33D;
+  --c2:#5AB6D9;
+  --c3:#A78BFA;
+  --c4:#EF8A7B;
+  --r:14px;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --display:"Bricolage Grotesque","Public Sans",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.02em}
+a{color:inherit}
+button{font-family:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+/* ---------- top bar ---------- */
+.topbar{
+  display:flex;align-items:center;gap:18px;
+  padding:14px 22px;
+  border-bottom:1px solid var(--line-soft);
+  background:linear-gradient(180deg,#111623,#0C0F16);
+  position:sticky;top:0;z-index:40;
+}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-size:18px}
+.brand-mark{width:22px;height:22px;flex:none}
+.brand span{color:var(--accent)}
+.nav{display:flex;gap:4px;margin-left:8px}
+.nav a{
+  font-size:13.5px;color:var(--text-2);text-decoration:none;
+  padding:6px 11px;border-radius:999px;
+}
+.nav a.on{background:var(--surface-2);color:var(--text)}
+.nav a:hover{color:var(--text)}
+.balance{
+  margin-left:auto;display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:13px;
+  background:var(--surface-2);border:1px solid var(--line);
+  padding:6px 12px;border-radius:999px;font-variant-numeric:tabular-nums;
+}
+.balance b{color:var(--yes);font-weight:600}
+.balance small{color:var(--muted);font-family:var(--sans);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:26px 22px 70px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 328px;gap:22px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r)}
+
+/* ---------- market head ---------- */
+.head{display:flex;gap:16px;align-items:flex-start;padding:20px 20px 18px}
+.avatar{width:56px;height:56px;border-radius:12px;flex:none}
+.head h1{font-size:clamp(21px,3.2vw,28px);line-height:1.18;font-weight:700}
+.eyebrow{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:7px;display:flex;align-items:center;gap:8px;
+}
+.live{display:inline-flex;align-items:center;gap:5px;color:var(--yes)}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--yes)}
+@media (prefers-reduced-motion:no-preference){
+  .dot-live{animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+}
+.metaline{
+  display:flex;flex-wrap:wrap;gap:16px;margin-top:11px;
+  font-size:13px;color:var(--text-2);font-family:var(--mono);
+  font-variant-numeric:tabular-nums;
+}
+.metaline b{color:var(--text);font-weight:500}
+
+/* ---------- chart ---------- */
+.chartbox{border-top:1px solid var(--line-soft);padding:16px 20px 8px}
+.chart-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.leader-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.leader{display:flex;align-items:baseline;gap:10px;margin-top:2px}
+.leader-name{font-family:var(--display);font-size:17px;font-weight:600}
+.leader-pct{font-family:var(--mono);font-size:30px;font-weight:600;color:var(--c1);letter-spacing:-.02em}
+.delta{font-family:var(--mono);font-size:13px;color:var(--yes)}
+.delta.dn{color:var(--no)}
+.ranges{display:flex;gap:3px;background:var(--surface-2);padding:3px;border-radius:9px}
+.ranges button{
+  border:0;background:transparent;color:var(--muted);
+  font-size:11.5px;letter-spacing:.08em;font-weight:600;
+  padding:5px 11px;border-radius:7px;
+}
+.ranges button.on{background:var(--surface-3);color:var(--text)}
+.plot{position:relative}
+.plot svg{display:block;width:100%;height:auto}
+.tip{
+  position:absolute;pointer-events:none;opacity:0;transition:opacity .12s;
+  background:#0A0D14;border:1px solid var(--line);border-radius:10px;
+  padding:9px 11px;min-width:190px;z-index:5;
+  box-shadow:0 12px 30px rgba(0,0,0,.55);
+}
+.tip.on{opacity:1}
+.tip .tdate{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.tip .trow{display:flex;align-items:center;gap:7px;font-size:12.5px;padding:1.5px 0}
+.tip .trow em{font-style:normal;color:var(--text-2);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:126px}
+.tip .trow b{font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums}
+.sw{width:8px;height:8px;border-radius:2px;flex:none}
+
+.legend{display:flex;flex-wrap:wrap;gap:6px;padding:12px 0 4px;border-top:1px solid var(--line-soft);margin-top:6px}
+.legend button{
+  display:flex;align-items:center;gap:7px;border:1px solid var(--line);
+  background:var(--surface-2);border-radius:999px;padding:5px 11px;font-size:12.5px;color:var(--text-2);
+}
+.legend button.off{opacity:.38}
+.legend button b{font-family:var(--mono);font-weight:500;color:var(--text)}
+
+.events{padding:12px 0 16px;display:grid;gap:7px}
+.ev{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:var(--text-2)}
+.ev-n{
+  width:17px;height:17px;flex:none;border-radius:50%;
+  border:1px solid var(--line);background:var(--surface-2);
+  font-family:var(--mono);font-size:10px;display:grid;place-items:center;color:var(--accent);margin-top:1px;
+}
+.ev time{font-family:var(--mono);color:var(--muted);font-size:11.5px}
+
+/* ---------- outcomes ---------- */
+.sect-h{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:15px 20px;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+}
+.sect-h h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);font-weight:600;font-family:var(--sans)}
+.sect-h span{font-size:11.5px;color:var(--muted);font-family:var(--mono)}
+.row{
+  display:flex;align-items:center;gap:14px;padding:15px 20px;
+  border-bottom:1px solid var(--line-soft);
+}
+.row:last-child{border-bottom:0}
+.row-bar{width:3px;align-self:stretch;border-radius:3px;flex:none}
+.row-main{flex:1;min-width:0}
+.row-name{font-weight:600;font-size:15px;letter-spacing:-.01em}
+.row-sub{font-size:12px;color:var(--muted);font-family:var(--mono);margin-top:3px;font-variant-numeric:tabular-nums}
+.row-pct{font-family:var(--mono);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;min-width:64px;text-align:right}
+.row-btns{display:flex;gap:7px;flex:none}
+.bet{
+  border:1px solid transparent;border-radius:9px;padding:8px 13px;
+  font-family:var(--mono);font-size:12.5px;font-weight:500;
+  background:var(--surface-2);color:var(--text-2);transition:transform .1s,background .15s;
+}
+.bet:hover{transform:translateY(-1px)}
+.bet.y{background:rgba(79,178,134,.13);color:#7FCFAB;border-color:rgba(79,178,134,.25)}
+.bet.n{background:rgba(224,102,92,.11);color:#EE968E;border-color:rgba(224,102,92,.22)}
+.bet.sel{outline:1px solid currentColor}
+
+/* ---------- ticket ---------- */
+.side{display:grid;gap:18px;position:sticky;top:86px}
+.ticket{padding:16px}
+.ticket h3{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);font-family:var(--sans);font-weight:600;margin-bottom:13px}
+.pick{width:100%;background:var(--surface-2);border:1px solid var(--line);color:var(--text);
+  border-radius:10px;padding:10px 11px;font-size:13.5px;font-family:var(--sans)}
+.side-tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:11px 0}
+.side-tabs button{
+  border:1px solid var(--line);background:var(--surface-2);border-radius:10px;
+  padding:10px;font-family:var(--mono);font-size:13px;color:var(--text-2);
+}
+.side-tabs button.on.y{background:rgba(79,178,134,.16);border-color:rgba(79,178,134,.45);color:#8ED6B3}
+.side-tabs button.on.n{background:rgba(224,102,92,.14);border-color:rgba(224,102,92,.42);color:#F0A29B}
+.amt{display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.amt span{color:var(--muted);font-family:var(--mono)}
+.amt input{
+  flex:1;background:transparent;border:0;color:var(--text);
+  font-family:var(--mono);font-size:19px;font-weight:600;width:100%;min-width:0;
+  font-variant-numeric:tabular-nums;
+}
+.amt input:focus{outline:none}
+.chips{display:flex;gap:6px;margin:9px 0 13px}
+.chips button{flex:1;border:1px solid var(--line);background:transparent;border-radius:8px;padding:6px;font-family:var(--mono);font-size:12px;color:var(--text-2)}
+.chips button:hover{background:var(--surface-2)}
+.payout{display:flex;justify-content:space-between;font-size:13px;color:var(--text-2);padding:3px 0;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.payout b{color:var(--yes);font-weight:600}
+.buy{
+  width:100%;margin-top:13px;border:0;border-radius:11px;padding:13px;
+  background:var(--accent);color:#1A1200;font-weight:700;font-size:14.5px;
+  font-family:var(--sans);letter-spacing:.01em;transition:filter .15s,transform .1s;
+}
+.buy:hover{filter:brightness(1.08)}
+.buy:active{transform:translateY(1px)}
+.ticket-note{font-size:11px;color:var(--muted);text-align:center;margin-top:9px;line-height:1.4}
+
+/* ---------- feed ---------- */
+.feed{padding:16px}
+.feed h3{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);font-family:var(--sans);font-weight:600;margin-bottom:12px}
+.feed ul{list-style:none;margin:0;padding:0;display:grid;gap:11px;max-height:330px;overflow-y:auto}
+.feed li{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;line-height:1.45}
+.who{width:24px;height:24px;border-radius:7px;flex:none;display:grid;place-items:center;
+  font-family:var(--mono);font-size:10px;background:var(--surface-3);color:var(--text-2)}
+.feed .fname{color:var(--text);font-weight:600}
+.feed .fbody{color:var(--muted)}
+.feed .fy{color:#7FCFAB}
+.feed .fn{color:#EE968E}
+.feed .ft{font-family:var(--mono);font-size:11px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){
+  .feed li.new{animation:slidein .35s ease}
+  @keyframes slidein{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+}
+
+/* ---------- rules ---------- */
+.rules{padding:18px 20px;margin-top:22px}
+.rules h3{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);font-family:var(--sans);font-weight:600;margin-bottom:11px}
+.rules p{margin:0 0 9px;font-size:13.5px;color:var(--text-2);max-width:66ch}
+.rules p:last-child{margin-bottom:0}
+.talk{display:grid;gap:13px;padding:18px 20px;margin-top:18px}
+.talk h3{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);font-family:var(--sans);font-weight:600}
+.msg{display:flex;gap:10px;align-items:flex-start}
+.msg p{margin:0;font-size:13.5px;color:var(--text-2)}
+.msg .u{font-size:12px;color:var(--text);font-weight:600;font-family:var(--mono)}
+footer{
+  max-width:1180px;margin:0 auto;padding:24px 22px 40px;
+  color:var(--muted);font-size:11.5px;text-align:center;line-height:1.6;
+}
+@media (max-width:960px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .side{position:static}
+  .row{flex-wrap:wrap}
+  .row-btns{width:100%}
+  .row-btns .bet{flex:1}
+}
+</style>
+</head>
+<body>
+
+
+<div class="topbar">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="1" y="1" width="22" height="22" rx="6" fill="#E8A33D"/>
+      <path d="M5 16.5 9.2 11l3.1 3 5.7-7.2" stroke="#1A1200" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Spot<span>Market</span>
+  </div>
+  <nav class="nav">
+    <a href="#" class="on">Mercati</a>
+    <a href="#attivita">Attività</a>
+    <a href="#regole">Regolamento</a>
+  </nav>
+  <div class="balance"><small>Saldo</small> <b id="bal">€1.000,00</b></div>
+</div>
+
+<div class="wrap">
+<div class="grid">
+
+  <div>
+    <div class="card">
+      <div class="head">
+        <svg class="avatar" viewBox="0 0 56 56" aria-hidden="true">
+          <rect width="56" height="56" rx="12" fill="#232A3B"/>
+          <text x="28" y="35" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-size="21" font-weight="700" fill="#E8A33D">FB</text>
+        </svg>
+        <div>
+          <div class="eyebrow">
+            <span>Mercato multi-esito</span>
+            <span class="live"><span class="dot-live"></span>Aperto</span>
+          </div>
+          <h1>Cosa annuncerà Fabio Bin a Marco e Lucia?</h1>
+          <div class="metaline">
+            <span>Volume <b>€127.480</b></span>
+            <span>Chiusura <b>alla chiamata</b></span>
+            <span>Trader <b>34</b></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chartbox">
+        <div class="chart-top">
+          <div>
+            <div class="leader-label">In testa</div>
+            <div class="leader">
+              <span class="leader-name" id="lname">Diventa il nuovo CEO</span>
+              <span class="leader-pct" id="lpct">41%</span>
+              <span class="delta" id="ldelta">+19 pt in 6 settimane</span>
+            </div>
+          </div>
+          <div class="ranges" id="ranges">
+            <button data-r="7">1S</button>
+            <button data-r="30">1M</button>
+            <button data-r="0" class="on">TUTTO</button>
+          </div>
+        </div>
+
+        <div class="plot" id="plot">
+          <svg id="svg" viewBox="0 0 760 272" role="img" aria-label="Andamento delle probabilità dei quattro esiti dal 12 luglio al 24 agosto 2026"></svg>
+          <div class="tip" id="tip"></div>
+        </div>
+
+        <div class="legend" id="legend"></div>
+
+        <div class="events">
+          <div class="ev"><span class="ev-n">1</span><div><time>28 lug</time> — Fabio salta il QBR trimestrale e manda un sostituto. Il mercato prezza una promozione.</div></div>
+          <div class="ev"><span class="ev-n">2</span><div><time>9 ago</time> — Aggiorna la foto profilo su LinkedIn. Panico: «Lascia WeRoad» tocca il 37%.</div></div>
+          <div class="ev"><span class="ev-n">3</span><div><time>19 ago</time> — «Ragazzi devo darvi una notizia importante». Volume record in 24 ore.</div></div>
+        </div>
+      </div>
+
+      <div class="sect-h">
+        <h2>Esiti</h2>
+        <span>Prezzo = probabilità implicita</span>
+      </div>
+      <div id="outcomes"></div>
+    </div>
+
+    <div class="card rules" id="regole">
+      <h3>Regolamento</h3>
+      <p>Il mercato si risolve nel momento esatto in cui Fabio pronuncia la notizia in chiamata con Marco e Lucia. Vale la prima frase compiuta: preamboli, «allora…» e pause a effetto non contano.</p>
+      <p>Se l'annuncio copre più di un esito, si risolve su quello che Fabio nomina per primo. Se non ne copre nessuno, il mercato si annulla e le puntate tornano ai trader — con una birra a carico di chi ha aperto il mercato.</p>
+      <p>Le quote iniziali sono state fissate a occhio da due Account Manager con zero informazioni privilegiate e un discreto conflitto di interessi.</p>
+    </div>
+
+    <div class="card talk">
+      <h3>Commenti</h3>
+      <div class="msg"><span class="who">LU</span><div><span class="u">@lucia</span><p>Se ci propone di entrare nel suo team io sono long a qualsiasi prezzo.</p></div></div>
+      <div class="msg"><span class="who">MB</span><div><span class="u">@marco</span><p>«Notizia importante» detto da un CMO nel 90% dei casi significa slide. Vendo tutto.</p></div></div>
+      <div class="msg"><span class="who">A4</span><div><span class="u">@anon_4417</span><p>Nessuno che prezza «ci chiede uno sconto sul budget Q4»? Mercato inefficiente.</p></div></div>
+    </div>
+  </div>
+
+  <aside class="side">
+    <div class="card ticket">
+      <h3>Piazza la puntata</h3>
+      <select class="pick" id="pick" aria-label="Scegli l'esito"></select>
+      <div class="side-tabs">
+        <button class="y on" id="tabY">SÌ · <span id="pY">41¢</span></button>
+        <button class="n" id="tabN">NO · <span id="pN">59¢</span></button>
+      </div>
+      <div class="amt">
+        <span>€</span>
+        <input id="amt" type="number" min="1" step="1" value="50" aria-label="Importo in euro finti">
+      </div>
+      <div class="chips">
+        <button data-a="10">+10</button>
+        <button data-a="50">+50</button>
+        <button data-a="100">+100</button>
+        <button data-a="max">Max</button>
+      </div>
+      <div class="payout"><span>Quote</span><span id="odds">2,44×</span></div>
+      <div class="payout"><span>Se vinci</span><b id="win">€122,00</b></div>
+      <button class="buy" id="buy">Compra</button>
+      <div class="ticket-note">Denaro finto. Nessun regolatore è stato informato.</div>
+    </div>
+
+    <div class="card feed" id="attivita">
+      <h3>Attività</h3>
+      <ul id="feed"></ul>
+    </div>
+  </aside>
+
+</div>
+</div>
+
+<footer>
+  SpotMarket è un mercato previsionale immaginario creato da Marco e Lucia per Fabio.<br>
+  Nessuna scommessa reale, nessun denaro reale, nessuna informazione riservata. Solo affetto e leggera ansia da attesa.
+</footer>
+
+<script>
+// ---------- serie e storia del mercato ----------
+const SERIES=[
+ {id:'ceo',   name:'Diventa il nuovo CEO',              short:'Nuovo CEO',   color:'#E8A33D', pts:[[0,22],[10,26],[16,31],[22,28],[28,24],[33,31],[38,38],[43,41]]},
+ {id:'esce',  name:'Lascia WeRoad',                     short:'Lascia',      color:'#5AB6D9', pts:[[0,31],[10,28],[16,25],[22,27],[28,37],[33,32],[38,28],[43,26]]},
+ {id:'team',  name:'Ci propone di entrare nel suo team',short:'Nel suo team',color:'#A78BFA', pts:[[0,26],[10,24],[16,22],[22,23],[28,19],[33,18],[38,17],[43,19]]},
+ {id:'evento',name:'Invito a un evento WeRoad',         short:'Evento',      color:'#EF8A7B', pts:[[0,21],[10,22],[16,23],[22,22],[28,21],[33,19],[38,17],[43,14]]},
+];
+const N=44, EVENTS=[16,28,38];
+const START=new Date(2026,6,12);
+const MESI=['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+const dates=Array.from({length:N},(_,i)=>{const d=new Date(START);d.setDate(d.getDate()+i);return d;});
+const fdate=d=>d.getDate()+' '+MESI[d.getMonth()];
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+const rnd=mulberry32(20260824);
+const smooth=t=>t*t*(3-2*t);
+
+SERIES.forEach(s=>{
+  const v=[];
+  for(let i=0;i<N;i++){
+    let a=s.pts[0],b=s.pts[s.pts.length-1];
+    for(let k=0;k<s.pts.length-1;k++){if(i>=s.pts[k][0]&&i<=s.pts[k+1][0]){a=s.pts[k];b=s.pts[k+1];break;}}
+    const t=b[0]===a[0]?0:(i-a[0])/(b[0]-a[0]);
+    v.push(a[1]+(b[1]-a[1])*smooth(t)+(rnd()-.5)*1.7);
+  }
+  s.v=v;
+});
+for(let i=0;i<N;i++){
+  const tot=SERIES.reduce((a,s)=>a+s.v[i],0);
+  SERIES.forEach(s=>s.v[i]=s.v[i]/tot*100);
+}
+
+// ---------- chart ----------
+const W=760,H=272,PL=30,PR=46,PT=18,PB=30;
+const svg=document.getElementById('svg'),plot=document.getElementById('plot'),tip=document.getElementById('tip');
+let range=0, hidden=new Set(), hoverIdx=null;
+
+const view=()=>{const n=range?Math.min(range,N):N;return{from:N-n,n};};
+const X=(i,v)=>PL+(v.n===1?0:(i-v.from)/(v.n-1))*(W-PL-PR);
+const yMin=()=>6, yMax=()=>47;
+const Y=p=>PT+(1-(p-yMin())/(yMax()-yMin()))*(H-PT-PB);
+
+function path(s,v){
+  let d='';
+  for(let i=v.from;i<N;i++){d+=(i===v.from?'M':'L')+X(i,v).toFixed(1)+' '+Y(s.v[i]).toFixed(1);}
+  return d;
+}
+
+function draw(){
+  const v=view();
+  let g='';
+  // griglia
+  for(let p=10;p<=40;p+=10){
+    g+=`<line x1="${PL}" y1="${Y(p)}" x2="${W-PR}" y2="${Y(p)}" stroke="#202634" stroke-width="1"/>`;
+    g+=`<text x="${W-PR+9}" y="${Y(p)+4}" fill="#727C93" font-family="IBM Plex Mono, monospace" font-size="10.5">${p}%</text>`;
+  }
+  // eventi
+  EVENTS.forEach((e,k)=>{
+    if(e<v.from)return;
+    const x=X(e,v);
+    g+=`<line x1="${x}" y1="${PT}" x2="${x}" y2="${H-PB}" stroke="#2A3143" stroke-width="1" stroke-dasharray="3 4"/>`;
+    g+=`<circle cx="${x}" cy="${PT-3}" r="8" fill="#1B2130" stroke="#2A3143"/>`;
+    g+=`<text x="${x}" y="${PT+1}" text-anchor="middle" fill="#E8A33D" font-family="IBM Plex Mono, monospace" font-size="9.5">${k+1}</text>`;
+  });
+  // date
+  const ticks=v.n<=7?[...Array(v.n).keys()].map(i=>v.from+i):[v.from,v.from+Math.floor(v.n/3),v.from+Math.floor(2*v.n/3),N-1];
+  ticks.forEach(i=>{g+=`<text x="${X(i,v)}" y="${H-9}" text-anchor="middle" fill="#727C93" font-family="IBM Plex Mono, monospace" font-size="10.5">${fdate(dates[i])}</text>`;});
+  // linee
+  SERIES.forEach(s=>{
+    if(hidden.has(s.id))return;
+    g+=`<path d="${path(s,v)}" fill="none" stroke="${s.color}" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"/>`;
+    g+=`<circle cx="${X(N-1,v)}" cy="${Y(s.v[N-1])}" r="3.4" fill="${s.color}"/>`;
+  });
+  // crosshair
+  if(hoverIdx!==null&&hoverIdx>=v.from){
+    const x=X(hoverIdx,v);
+    g+=`<line x1="${x}" y1="${PT}" x2="${x}" y2="${H-PB}" stroke="#5A647C" stroke-width="1"/>`;
+    SERIES.forEach(s=>{if(hidden.has(s.id))return;
+      g+=`<circle cx="${x}" cy="${Y(s.v[hoverIdx])}" r="4" fill="#0C0F16" stroke="${s.color}" stroke-width="2"/>`;});
+  }
+  svg.innerHTML=g;
+}
+
+plot.addEventListener('pointermove',e=>{
+  const r=svg.getBoundingClientRect(),v=view();
+  const cx=(e.clientX-r.left)/r.width*W;
+  let i=Math.round(v.from+(cx-PL)/(W-PL-PR)*(v.n-1));
+  i=Math.max(v.from,Math.min(N-1,i));
+  hoverIdx=i;draw();
+  let rows='';
+  SERIES.filter(s=>!hidden.has(s.id)).sort((a,b)=>b.v[i]-a.v[i]).forEach(s=>{
+    rows+=`<div class="trow"><span class="sw" style="background:${s.color}"></span><em>${s.short}</em><b>${s.v[i].toFixed(1)}%</b></div>`;
+  });
+  tip.innerHTML=`<div class="tdate">${fdate(dates[i])} 2026</div>${rows}`;
+  tip.classList.add('on');
+  const px=(i-v.from)/(v.n-1||1)*(r.width-(PL+PR)/W*r.width)+PL/W*r.width;
+  tip.style.left=Math.min(Math.max(px-95,4),r.width-200)+'px';
+  tip.style.top='6px';
+});
+plot.addEventListener('pointerleave',()=>{hoverIdx=null;tip.classList.remove('on');draw();});
+
+document.getElementById('ranges').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  range=+b.dataset.r;
+  [...e.currentTarget.children].forEach(c=>c.classList.toggle('on',c===b));
+  draw();
+});
+
+// ---------- legenda ----------
+const legend=document.getElementById('legend');
+function drawLegend(){
+  legend.innerHTML=SERIES.map(s=>
+    `<button data-id="${s.id}" class="${hidden.has(s.id)?'off':''}">
+      <span class="sw" style="background:${s.color}"></span>${s.short} <b>${s.v[N-1].toFixed(0)}%</b>
+    </button>`).join('');
+}
+legend.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  const id=b.dataset.id;
+  if(hidden.has(id))hidden.delete(id);else if(hidden.size<SERIES.length-1)hidden.add(id);
+  drawLegend();draw();
+});
+
+// ---------- esiti ----------
+const outEl=document.getElementById('outcomes');
+function drawOutcomes(){
+  outEl.innerHTML=SERIES.slice().sort((a,b)=>b.v[N-1]-a.v[N-1]).map(s=>{
+    const p=s.v[N-1],d=p-s.v[0];
+    return `<div class="row">
+      <span class="row-bar" style="background:${s.color}"></span>
+      <div class="row-main">
+        <div class="row-name">${s.name}</div>
+        <div class="row-sub">${d>=0?'▲ +':'▼ '}${d.toFixed(1)} pt dall'apertura · vol €${(28+p*1.4).toFixed(0)}k</div>
+      </div>
+      <div class="row-pct" style="color:${s.color}">${p.toFixed(0)}%</div>
+      <div class="row-btns">
+        <button class="bet y" data-id="${s.id}" data-s="y">Sì ${(p).toFixed(0)}¢</button>
+        <button class="bet n" data-id="${s.id}" data-s="n">No ${(100-p).toFixed(0)}¢</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+outEl.addEventListener('click',e=>{
+  const b=e.target.closest('.bet');if(!b)return;
+  pick.value=b.dataset.id;setSide(b.dataset.s);
+  document.querySelector('.ticket').scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+
+// ---------- ticket ----------
+const pick=document.getElementById('pick'),amt=document.getElementById('amt');
+const tabY=document.getElementById('tabY'),tabN=document.getElementById('tabN');
+let side='y',balance=1000;
+pick.innerHTML=SERIES.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
+function cur(){return SERIES.find(s=>s.id===pick.value);}
+function price(){const p=cur().v[N-1]/100;return side==='y'?p:1-p;}
+function setSide(s){side=s;tabY.classList.toggle('on',s==='y');tabN.classList.toggle('on',s==='n');refresh();}
+tabY.onclick=()=>setSide('y');tabN.onclick=()=>setSide('n');
+pick.onchange=refresh;amt.oninput=refresh;
+document.querySelector('.chips').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  amt.value=b.dataset.a==='max'?Math.floor(balance):(+amt.value||0)+ +b.dataset.a;
+  refresh();
+});
+const eur=n=>'€'+n.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
+function refresh(){
+  const s=cur(),p=s.v[N-1];
+  document.getElementById('pY').textContent=p.toFixed(0)+'¢';
+  document.getElementById('pN').textContent=(100-p).toFixed(0)+'¢';
+  const a=Math.max(0,+amt.value||0),pr=price();
+  document.getElementById('odds').textContent=(1/pr).toFixed(2).replace('.',',')+'×';
+  document.getElementById('win').textContent=eur(a/pr);
+  document.getElementById('bal').textContent=eur(balance);
+  document.getElementById('lname').textContent=SERIES.slice().sort((x,y)=>y.v[N-1]-x.v[N-1])[0].name;
+  const top=SERIES.slice().sort((x,y)=>y.v[N-1]-x.v[N-1])[0];
+  document.getElementById('lpct').textContent=top.v[N-1].toFixed(0)+'%';
+  document.getElementById('lpct').style.color=top.color;
+  const dd=top.v[N-1]-top.v[0];
+  const del=document.getElementById('ldelta');
+  del.textContent=(dd>=0?'+':'')+dd.toFixed(0)+' pt dall’apertura';
+  del.className='delta'+(dd<0?' dn':'');
+}
+
+document.getElementById('buy').onclick=()=>{
+  const a=Math.max(0,+amt.value||0);
+  if(a<1||a>balance){amt.focus();return;}
+  const s=cur();
+  balance-=a;
+  // il prezzo si muove: impatto ~0.35 pt ogni 50€
+  const shift=Math.min(6,a/50*.35)*(side==='y'?1:-1);
+  s.v[N-1]=Math.max(2,Math.min(94,s.v[N-1]+shift));
+  const others=SERIES.filter(x=>x!==s),tot=others.reduce((t,x)=>t+x.v[N-1],0);
+  others.forEach(x=>x.v[N-1]=x.v[N-1]-shift*(x.v[N-1]/tot));
+  addTrade({who:'MB',name:'@marco',side,amount:a,outcome:s.short,color:s.color,when:'ora'});
+  drawOutcomes();drawLegend();draw();refresh();
+};
+
+// ---------- feed ----------
+const feedEl=document.getElementById('feed');
+const trades=[
+ {who:'LU',name:'@lucia',side:'y',amount:120,outcome:'Nel suo team',when:'2 min fa'},
+ {who:'A4',name:'@anon_4417',side:'y',amount:340,outcome:'Nuovo CEO',when:'11 min fa'},
+ {who:'DD',name:'@deal_desk',side:'n',amount:75,outcome:'Lascia',when:'26 min fa'},
+ {who:'GS',name:'@g_sette',side:'y',amount:50,outcome:'Evento',when:'1 h fa'},
+ {who:'MB',name:'@marco',side:'y',amount:200,outcome:'Nuovo CEO',when:'3 h fa'},
+ {who:'A9',name:'@anon_9002',side:'n',amount:410,outcome:'Nuovo CEO',when:'5 h fa'},
+ {who:'LU',name:'@lucia',side:'y',amount:60,outcome:'Lascia',when:'ieri'},
+];
+function li(t,isNew){
+  return `<li class="${isNew?'new':''}">
+    <span class="who">${t.who}</span>
+    <div><span class="fname">${t.name}</span>
+      <span class="fbody">ha comprato <span class="${t.side==='y'?'fy':'fn'}">${t.side==='y'?'Sì':'No'}</span> su <b style="color:var(--text);font-weight:600">${t.outcome}</b> per €${t.amount}</span>
+      <div class="ft">${t.when}</div></div></li>`;
+}
+function addTrade(t){feedEl.insertAdjacentHTML('afterbegin',li(t,true));}
+feedEl.innerHTML=trades.map(t=>li(t,false)).join('');
+
+// ---------- go ----------
+drawOutcomes();drawLegend();draw();refresh();
+</script>
+
+</body>
+</html>
