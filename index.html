@@ -255,6 +255,31 @@ footer{
   .row-btns{width:100%}
   .row-btns .bet{flex:1}
 }
+@media (max-width:640px){
+  body{overflow-x:hidden}
+  .topbar{gap:10px;padding:11px 14px}
+  .nav{display:none}
+  .balance{padding:5px 10px;font-size:12px;gap:7px}
+  .wrap{padding:15px 13px 46px}
+  .head{padding:16px 15px 14px;gap:12px}
+  .avatar{width:44px;height:44px}
+  .head h1{font-size:20px}
+  .metaline{gap:11px;font-size:12px}
+  .chartbox{padding:14px 15px 6px}
+  .chart-top{margin-bottom:11px}
+  .leader{flex-wrap:wrap;gap:8px}
+  .leader-pct{font-size:26px}
+  .delta{font-size:12px;width:100%}
+  .sect-h{padding:13px 15px}
+  .row{padding:14px 15px;gap:11px}
+  .row-name{font-size:14.5px}
+  .row-pct{font-size:20px;min-width:50px}
+  .rules,.talk,.ticket,.feed{padding:15px}
+  .feed ul{max-height:none}
+  .tip{min-width:0;padding:8px 10px}
+  .tip .trow em{max-width:105px}
+  footer{padding:20px 15px 34px}
+}
 </style>
 </head>
 <body>
@@ -425,7 +450,9 @@ for(let i=0;i<N;i++){
 }
 
 // ---------- chart ----------
-const W=760,H=272,PL=30,PR=46,PT=18,PB=30;
+const W=760,PT=18,PB=30;
+let PL=30,PR=46,H=272,K=1;
+function metrics(){const w=svg.getBoundingClientRect().width||760;K=Math.min(2.2,Math.max(1,760/w));H=K>1.6?420:(K>1.25?330:272);PR=Math.round(46+(K-1)*36);PL=Math.round(30+(K-1)*4);}
 const svg=document.getElementById('svg'),plot=document.getElementById('plot'),tip=document.getElementById('tip');
 let range=0, hidden=new Set(), hoverIdx=null;
 
@@ -441,29 +468,32 @@ function path(s,v){
 }
 
 function draw(){
+  metrics();
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
   const v=view();
   let g='';
   // griglia
   for(let p=10;p<=40;p+=10){
     g+=`<line x1="${PL}" y1="${Y(p)}" x2="${W-PR}" y2="${Y(p)}" stroke="#202634" stroke-width="1"/>`;
-    g+=`<text x="${W-PR+9}" y="${Y(p)+4}" fill="#727C93" font-family="IBM Plex Mono, monospace" font-size="10.5">${p}%</text>`;
+    g+=`<text x="${W-PR+9*K}" y="${Y(p)+4}" fill="#727C93" font-family="IBM Plex Mono, monospace" font-size="${(10.5*K).toFixed(1)}">${p}%</text>`;
   }
   // eventi
   EVENTS.forEach((e,k)=>{
     if(e<v.from)return;
     const x=X(e,v);
     g+=`<line x1="${x}" y1="${PT}" x2="${x}" y2="${H-PB}" stroke="#2A3143" stroke-width="1" stroke-dasharray="3 4"/>`;
-    g+=`<circle cx="${x}" cy="${PT-3}" r="8" fill="#1B2130" stroke="#2A3143"/>`;
-    g+=`<text x="${x}" y="${PT+1}" text-anchor="middle" fill="#E8A33D" font-family="IBM Plex Mono, monospace" font-size="9.5">${k+1}</text>`;
+    g+=`<circle cx="${x}" cy="${PT-3}" r="${(8*K).toFixed(1)}" fill="#1B2130" stroke="#2A3143"/>`;
+    g+=`<text x="${x}" y="${PT+1}" text-anchor="middle" fill="#E8A33D" font-family="IBM Plex Mono, monospace" font-size="${(9.5*K).toFixed(1)}">${k+1}</text>`;
   });
   // date
-  const ticks=v.n<=7?[...Array(v.n).keys()].map(i=>v.from+i):[v.from,v.from+Math.floor(v.n/3),v.from+Math.floor(2*v.n/3),N-1];
-  ticks.forEach(i=>{g+=`<text x="${X(i,v)}" y="${H-9}" text-anchor="middle" fill="#727C93" font-family="IBM Plex Mono, monospace" font-size="10.5">${fdate(dates[i])}</text>`;});
+  const few=K>1.25;
+  const ticks=v.n<=7?(few?[v.from,v.from+Math.floor(v.n/2),N-1]:[...Array(v.n).keys()].map(i=>v.from+i)):(few?[v.from,v.from+Math.floor(v.n/2),N-1]:[v.from,v.from+Math.floor(v.n/3),v.from+Math.floor(2*v.n/3),N-1]);
+  ticks.forEach((i,ti)=>{const anc=ti===0?'start':(ti===ticks.length-1?'end':'middle');g+=`<text x="${X(i,v)}" y="${H-9*K}" text-anchor="${anc}" fill="#727C93" font-family="IBM Plex Mono, monospace" font-size="${(10.5*K).toFixed(1)}">${fdate(dates[i])}</text>`;});
   // linee
   SERIES.forEach(s=>{
     if(hidden.has(s.id))return;
-    g+=`<path d="${path(s,v)}" fill="none" stroke="${s.color}" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"/>`;
-    g+=`<circle cx="${X(N-1,v)}" cy="${Y(s.v[N-1])}" r="3.4" fill="${s.color}"/>`;
+    g+=`<path d="${path(s,v)}" fill="none" stroke="${s.color}" stroke-width="${(2.1*K).toFixed(1)}" stroke-linejoin="round" stroke-linecap="round"/>`;
+    g+=`<circle cx="${X(N-1,v)}" cy="${Y(s.v[N-1])}" r="${(3.4*K).toFixed(1)}" fill="${s.color}"/>`;
   });
   // crosshair
   if(hoverIdx!==null&&hoverIdx>=v.from){
@@ -611,6 +641,7 @@ feedEl.innerHTML=trades.map(t=>li(t,false)).join('');
 
 // ---------- go ----------
 drawOutcomes();drawLegend();draw();refresh();
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(draw,120);});
 </script>
 
 </body>
