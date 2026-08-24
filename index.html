@@ -351,7 +351,7 @@ footer{
 
         <div class="events">
           <div class="ev"><span class="ev-n">1</span><div><time>28 lug</time> — Fabio salta il QBR trimestrale e manda un sostituto. Il mercato prezza una promozione.</div></div>
-          <div class="ev"><span class="ev-n">2</span><div><time>9 ago</time> — Aggiorna la foto profilo su LinkedIn. Panico: «Lascia WeRoad» tocca il 37%.</div></div>
+          <div class="ev"><span class="ev-n">2</span><div><time>9 ago</time> — Aggiorna la foto profilo su LinkedIn. Panico: «si compra una barca» schizza dall’8% al 20%.</div></div>
           <div class="ev"><span class="ev-n">3</span><div><time>19 ago</time> — «Ragazzi devo darvi una notizia importante». Volume record in 24 ore.</div></div>
         </div>
       </div>
@@ -419,10 +419,12 @@ footer{
 <script>
 // ---------- serie e storia del mercato ----------
 const SERIES=[
- {id:'ceo',   name:'Diventa il nuovo CEO',              short:'Nuovo CEO',   color:'#E8A33D', pts:[[0,22],[10,26],[16,31],[22,28],[28,24],[33,31],[38,38],[43,41]]},
- {id:'esce',  name:'Lascia WeRoad',                     short:'Lascia',      color:'#5AB6D9', pts:[[0,31],[10,28],[16,25],[22,27],[28,37],[33,32],[38,28],[43,26]]},
- {id:'team',  name:'Ci propone di entrare nel suo team',short:'Nel suo team',color:'#A78BFA', pts:[[0,26],[10,24],[16,22],[22,23],[28,19],[33,18],[38,17],[43,19]]},
- {id:'evento',name:'Invito a un evento WeRoad',         short:'Evento',      color:'#EF8A7B', pts:[[0,21],[10,22],[16,23],[22,22],[28,21],[33,19],[38,17],[43,14]]},
+ {id:'ceo',   name:'Diventa il nuovo CEO',                                       short:'Nuovo CEO',     color:'#E8A33D', start:30, end:38, pts:[[0,30],[10,31],[16,34],[22,32],[28,27],[33,33],[38,37],[43,38]]},
+ {id:'team',  name:'Ci propone di entrare nel suo team',                         short:'Nel suo team',  color:'#A78BFA', start:22, end:20, pts:[[0,22],[10,22],[16,21],[22,22],[28,19],[33,20],[38,20],[43,20]]},
+ {id:'evento',name:'Invito a un evento WeRoad',                                  short:'Evento WeRoad', color:'#5AB6D9', start:17, end:14, pts:[[0,17],[10,17],[16,16],[22,17],[28,15],[33,15],[38,14],[43,14]]},
+ {id:'over55',name:'WeRoad lancia i viaggi +55 per Barlaam',                     short:'Viaggi +55',    color:'#EF8A7B', start:13, end:11, pts:[[0,13],[10,13],[16,12],[22,13],[28,11],[33,11],[38,11],[43,11]]},
+ {id:'google',name:'WeRoad chiude gli investimenti su Google, Lucia unemployed', short:'Stop Google',   color:'#7FD1B9', start:10, end:10, pts:[[0,10],[10,10],[16,9],[22,10],[28,8],[33,9],[38,10],[43,10]]},
+ {id:'barca', name:'Lascia WeRoad, si compra una barca e ci invita',             short:'Barca',         color:'#C58BB0', start:8,  end:7,  pts:[[0,8],[10,7],[16,8],[22,7],[28,20],[33,13],[38,9],[43,7]]},
 ];
 const N=44, EVENTS=[16,28,38];
 const START=new Date(2026,6,12);
@@ -448,6 +450,7 @@ for(let i=0;i<N;i++){
   const tot=SERIES.reduce((a,s)=>a+s.v[i],0);
   SERIES.forEach(s=>s.v[i]=s.v[i]/tot*100);
 }
+SERIES.forEach(s=>{s.v[0]=s.start;s.v[N-1]=s.end;});
 
 // ---------- chart ----------
 const W=760,PT=18,PB=30;
@@ -458,7 +461,7 @@ let range=0, hidden=new Set(), hoverIdx=null;
 
 const view=()=>{const n=range?Math.min(range,N):N;return{from:N-n,n};};
 const X=(i,v)=>PL+(v.n===1?0:(i-v.from)/(v.n-1))*(W-PL-PR);
-const yMin=()=>6, yMax=()=>47;
+const yMin=()=>4, yMax=()=>42;
 const Y=p=>PT+(1-(p-yMin())/(yMax()-yMin()))*(H-PT-PB);
 
 function path(s,v){
@@ -621,13 +624,13 @@ document.getElementById('buy').onclick=()=>{
 // ---------- feed ----------
 const feedEl=document.getElementById('feed');
 const trades=[
- {who:'LU',name:'@lucia',side:'y',amount:120,outcome:'Nel suo team',when:'2 min fa'},
+ {who:'LU',name:'@lucia',side:'n',amount:180,outcome:'Stop Google',when:'2 min fa'},
  {who:'A4',name:'@anon_4417',side:'y',amount:340,outcome:'Nuovo CEO',when:'11 min fa'},
- {who:'DD',name:'@deal_desk',side:'n',amount:75,outcome:'Lascia',when:'26 min fa'},
- {who:'GS',name:'@g_sette',side:'y',amount:50,outcome:'Evento',when:'1 h fa'},
+ {who:'DD',name:'@deal_desk',side:'y',amount:75,outcome:'Nel suo team',when:'26 min fa'},
+ {who:'GS',name:'@g_sette',side:'y',amount:50,outcome:'Viaggi +55',when:'1 h fa'},
  {who:'MB',name:'@marco',side:'y',amount:200,outcome:'Nuovo CEO',when:'3 h fa'},
- {who:'A9',name:'@anon_9002',side:'n',amount:410,outcome:'Nuovo CEO',when:'5 h fa'},
- {who:'LU',name:'@lucia',side:'y',amount:60,outcome:'Lascia',when:'ieri'},
+ {who:'A9',name:'@anon_9002',side:'y',amount:90,outcome:'Barca',when:'5 h fa'},
+ {who:'LU',name:'@lucia',side:'y',amount:60,outcome:'Evento WeRoad',when:'ieri'},
 ];
 function li(t,isNew){
   return `<li class="${isNew?'new':''}">
